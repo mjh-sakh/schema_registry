@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../schemas/_register'
-
-
 # Schema Validation
 class SchemaValidator
   class SchemaValidationFailed < StandardError; end
-
-  include Register
 
   def initialize(message, schema_name)
     @message = message
@@ -53,6 +48,8 @@ class SchemaValidator
     else # value check
       raise ArgumentError, "Value #{value_check} != #{message_value} for '#{key}'" if message_value != value_check
     end
+
+    message_value
   end
 
   alias v verify
